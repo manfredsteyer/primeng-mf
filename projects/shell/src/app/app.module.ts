@@ -9,22 +9,27 @@ import { AuthLibModule } from 'auth-lib';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 // import { SharedLibModule } from 'projects/shared-lib/src/public-api';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AuthLibModule,
     // SharedLibModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(APP_ROUTES)
+    RouterModule.forRoot(APP_ROUTES),
+    ToastModule
   ],
   declarations: [
     AppComponent,
     HomeComponent,
     NotFoundComponent
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
