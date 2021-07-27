@@ -14,13 +14,13 @@ import { ToastModule } from 'primeng/toast';
     AuthLibModule,
     SharedLibModule,
     RouterModule.forChild(FLIGHTS_ROUTES),
-    // ToastModule
+    ToastModule
   ],
   declarations: [
     FlightsSearchComponent
   ],
   providers: [
-    MessageService // Here is the problem, because I have to provide new instance of the service.
+     // Here is the problem, because I have to provide new instance of the service.
                    // Also to show the toast I have to put somewhere in the template <p-toast> which reacts on this service messages.
                    // How to share the service, toast module and the <p-toast> from shell?
   ]
