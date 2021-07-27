@@ -31,18 +31,16 @@ module.exports = {
           // "mfe1": "mfe1@http://localhost:3000/remoteEntry.js",
       },
 
-      shared: {
+      shared: share({
         "@angular/core": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
         "@angular/common": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
         "@angular/router": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
         "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' }, 
-        "primeng": { singleton: true, strictVersion: true, requiredVersion: '12.0.1' }, 
-        "primeng/api": { singleton: true, strictVersion: true, requiredVersion: '12.0.1' }, 
-        "primeng/toast": { singleton: true, strictVersion: true, requiredVersion: '12.0.1' }, 
+        "primeng": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true }, 
 
         // Uncomment for sharing lib of an Angular CLI or Nx workspace
         ...sharedMappings.getDescriptors()
-      }
+      })
 
     }),
     // Uncomment for sharing lib of an Angular CLI or Nx workspace
