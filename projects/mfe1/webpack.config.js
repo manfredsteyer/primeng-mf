@@ -8,7 +8,7 @@ sharedMappings.register(
   ['auth-lib']  
 );
 
-const share = mf.share;
+const shareAll = mf.shareAll;
 
 module.exports = {
   output: {
@@ -32,16 +32,11 @@ module.exports = {
         exposes: {
             './Module': './projects/mfe1/src/app/flights/flights.module.ts',
         },        
-        shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
-          "@angular/router": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' }, 
-          "primeng": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true }, 
-
-          // Uncomment for sharing lib of an Angular CLI or Nx workspace
+        shared: {
+          ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true }),
           ...sharedMappings.getDescriptors()
-        })
+        }
+  
         
     }),
     // Uncomment for sharing lib of an Angular CLI or Nx workspace

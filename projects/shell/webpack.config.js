@@ -2,7 +2,7 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 
-const share = mf.share;
+const shareAll = mf.shareAll;
 
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
@@ -31,16 +31,16 @@ module.exports = {
           // "mfe1": "mfe1@http://localhost:3000/remoteEntry.js",
       },
 
-      shared: share({
-        "@angular/core": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
-        "@angular/common": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
-        "@angular/router": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' },
-        "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: '12.0.0' }, 
-        "primeng": { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true }, 
-
-        // Uncomment for sharing lib of an Angular CLI or Nx workspace
+      shared: {
+        ...shareAll(
+          { singleton: true, strictVersion: true, requiredVersion: 'auto', includeSecondaries: true },
+          
+          /* this is the skip list. This package is not shared b/c */
+          /* it's already needed in the main.ts */
+          ['@angular-architects/module-federation', 'tslib']
+        ),
         ...sharedMappings.getDescriptors()
-      })
+      }
 
     }),
     // Uncomment for sharing lib of an Angular CLI or Nx workspace
